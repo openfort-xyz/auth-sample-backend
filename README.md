@@ -5,18 +5,20 @@ This is a sample for a simple backend to create a encryption session for [openfo
 ## Set up
 
 1. **Copy environment variables:**
+
     ```sh
     cp .env.example .env
     ```
-
-  Edit `.env` and set the required variables
+    Edit `.env` and set the required variables
 
 2. **Install dependencies:**
+    
     ```sh
     yarn install
     ```
 
 3. **Start the development server:**
+    
     ```sh
     yarn dev
     ```
