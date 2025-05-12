@@ -22,6 +22,5 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "ts-node-dev src/app.ts"
-  },
-  "packageManager": "yarn@4.4.1"
+  }
 }
