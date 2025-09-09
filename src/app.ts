@@ -1,6 +1,7 @@
 import Openfort from '@openfort/openfort-node';
 import cors from 'cors';
 import express, { Request, Response } from 'express';
+import os from 'os';
 
 process.loadEnvFile();
 
@@ -49,8 +50,27 @@ async function createEncryptionSession(
 
 app.post('/api/protected-create-encryption-session', createEncryptionSession);
 
+// Function to get local IP address
+function getLocalIP() {
+  const networkInterfaces = os.networkInterfaces();
+  for (const interfaceName in networkInterfaces) {
+    const interfaces = networkInterfaces[interfaceName];
+    if (interfaces) {
+      for (const networkInterface of interfaces) {
+        if (networkInterface.family === 'IPv4' && !networkInterface.internal) {
+          return networkInterface.address;
+        }
+      }
+    }
+  }
+  return 'localhost'; // Fallback to localhost if no local IP found
+}
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
+  const localIP = getLocalIP();
   console.log(`Server is running on port ${PORT}`);
+  console.log(`  - http://localhost:${PORT}`);
+  console.log(`  - http://${localIP}:${PORT}`);
 });

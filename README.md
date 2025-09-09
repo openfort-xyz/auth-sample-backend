@@ -1,6 +1,6 @@
 # Auth sample back
 
-This is a sample for a simple backend to create a encryption session for [openfort Signer](https://www.openfort.io/docs/guides/javascript/embedded-signer/recovery)
+This is a sample for a simple backend to create an encryption session for [openfort Signer](https://www.openfort.io/docs/guides/javascript/embedded-signer/recovery)
 
 ## Set up
 
@@ -9,16 +9,17 @@ This is a sample for a simple backend to create a encryption session for [openfo
     ```sh
     cp .env.example .env
     ```
+
     Edit `.env` and set the required variables
 
 2. **Install dependencies:**
-    
+
     ```sh
     yarn install
     ```
 
 3. **Start the development server:**
-    
+
     ```sh
     yarn dev
     ```
@@ -27,7 +28,7 @@ This is a sample for a simple backend to create a encryption session for [openfo
 
 Do a post to `/api/protected-create-encryption-session` and you will response a session like:
 
-```
+```json
   {
     "session": "cb44a4a1-5867-4b25-b5a0-57b496e14d78"
   }
