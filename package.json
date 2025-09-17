@@ -9,7 +9,6 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.5",
-    "@types/qs": "^6",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.3"
   },
