@@ -1,4 +1,4 @@
-# Auth sample back
+# Openfort backend quickstart
 
 This is a sample for a simple backend to create an encryption session for [openfort Signer](https://www.openfort.io/docs/guides/javascript/embedded-signer/recovery)
 
