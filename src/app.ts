@@ -15,12 +15,11 @@ app.use(
 );
 
 // Ensure Openfort is only initialized once
-const openfort = (() => {
-  if (!process.env.OPENFORT_SECRET_KEY) {
-    throw new Error("Openfort secret key is not set");
-  }
-  return new Openfort(process.env.OPENFORT_SECRET_KEY);
-})();
+if (!process.env.OPENFORT_SECRET_KEY) {
+  throw new Error("Openfort secret key is not set");
+};
+
+const openfort = new Openfort(process.env.OPENFORT_SECRET_KEY);
 
 
 async function createEncryptionSession(
