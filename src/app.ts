@@ -20,7 +20,8 @@ if (!process.env.OPENFORT_SECRET_KEY) {
 const openfort = new Openfort(process.env.OPENFORT_SECRET_KEY);
 
 async function createEncryptionSession(req: Request, res: Response) {
-  console.log(`[${req.headers['user-agent']?.split(' ')[0]}]`, 'Creating encryption session...');
+  const uaHead = String(req.headers['user-agent']?.split(' ')[0] || 'unknown').replace(/[\[\]]/g, ''); // Remove brackets to prevent log injection
+  console.log('[%s] Creating encryption session...', uaHead);
 
   try {
     const shieldApiKey = process.env.SHIELD_API_KEY;
