@@ -1,7 +1,7 @@
+import os from 'node:os';
 import Openfort from '@openfort/openfort-node';
 import cors from 'cors';
-import express, { Request, Response } from 'express';
-import os from 'os';
+import express, { type Request, type Response } from 'express';
 
 process.loadEnvFile();
 
@@ -10,35 +10,36 @@ const app = express();
 app.use(express.json());
 
 // Custom CORS options
-app.use(
-  cors()
-);
+app.use(cors());
 
 // Ensure Openfort is only initialized once
 if (!process.env.OPENFORT_SECRET_KEY) {
-  throw new Error("Openfort secret key is not set");
-};
+  throw new Error('Openfort secret key is not set');
+}
 
 const openfort = new Openfort(process.env.OPENFORT_SECRET_KEY);
 
-
-async function createEncryptionSession(
-  req: Request,
-  res: Response
-) {
-  console.log(`[${req.headers['user-agent']?.split(' ')[0]}]`, 'Creating encryption session...',);
+async function createEncryptionSession(req: Request, res: Response) {
+  console.log(`[${req.headers['user-agent']?.split(' ')[0]}]`, 'Creating encryption session...');
 
   try {
+    const shieldApiKey = process.env.SHIELD_API_KEY;
+    const shieldSecretKey = process.env.SHIELD_SECRET_KEY;
+    const shieldEncryptionShare = process.env.SHIELD_ENCRYPTION_SHARE;
+
+    if (!shieldApiKey || !shieldSecretKey || !shieldEncryptionShare) {
+      throw new Error('Shield environment variables are not set');
+    }
+
     const session = await openfort.registerRecoverySession(
-      process.env.SHIELD_API_KEY!,
-      process.env.SHIELD_SECRET_KEY!,
-      process.env.SHIELD_ENCRYPTION_SHARE!
+      shieldApiKey,
+      shieldSecretKey,
+      shieldEncryptionShare,
     );
 
     res.status(200).send({
       session: session,
     });
-
   } catch (e) {
     console.error(e);
     res.status(500).send({
