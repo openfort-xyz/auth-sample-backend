@@ -15,13 +15,13 @@ This is a sample for a simple backend to create an encryption session for [openf
 2. **Install dependencies:**
 
     ```sh
-    yarn install
+    pnpm install
     ```
 
 3. **Start the development server:**
 
     ```sh
-    yarn dev
+    pnpm dev
     ```
 
 ## What does it provide?
